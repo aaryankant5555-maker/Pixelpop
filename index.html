@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>PixelPop — Design Agency</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,700;12..96,800;12..96,900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
@@ -289,6 +289,152 @@ footer{background:white;padding:4rem 5vw 2rem;border-top:1px solid rgba(0,0,0,.0
 
 /* SCROLL PROGRESS */
 .progress-bar{position:fixed;top:0;left:0;height:2.5px;background:var(--grad);z-index:9999;width:0%;transition:width .1s linear;}
+
+/* ═══════════════ RESPONSIVE ═══════════════ */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+#hero-canvas,#stats-canvas{width:100%;height:100%;}
+.hero-content{width:100%;}
+.st-num{font-size:clamp(2.2rem,5vw,3.5rem);}
+.cit strong,.ft-col ul li a{overflow-wrap:anywhere;}
+
+/* hamburger (hidden on desktop) */
+.nav-toggle{display:none;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.92);box-shadow:0 2px 12px rgba(0,0,0,.08);align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.nav-toggle span{display:block;width:18px;height:2px;border-radius:2px;background:var(--text);transition:transform .3s,opacity .3s;}
+nav.open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+nav.open .nav-toggle span:nth-child(2){opacity:0;}
+nav.open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* touch devices: no custom cursor, no hover-only states */
+@media (hover:none),(pointer:coarse){
+  *,*::before,*::after{cursor:auto!important;}
+  #cur-dot,#cur-ring{display:none!important;}
+  .wk-info{transform:none;}
+  .wk-arrow{transform:none;}
+  .pc-step:hover,.pr-card:hover{transform:none;}
+  .pr-card.feat:hover{transform:none;}
+}
+
+/* ≤1100 — floating hero cards move below the hero text */
+@media (max-width:1100px){
+  .hero-cards{position:relative;inset:auto;order:2;width:100%;max-width:900px;margin:3.5rem auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+  .hero-content{order:1;}
+  .hcard{position:relative;top:auto;left:auto;right:auto;bottom:auto;width:auto;padding:1.1rem 1.15rem;border-radius:18px;text-align:left;}
+  .hcard-1{transform:rotate(-2deg);}
+  .hcard-2{transform:rotate(2deg);}
+  .hcard-3{transform:rotate(2deg);}
+  .hcard-4{transform:rotate(-2deg);}
+}
+
+/* ≤1000 — tablet */
+@media (max-width:1000px){
+  section{padding:5.5rem 5vw;}
+  .sv-grid{grid-template-columns:repeat(2,1fr);}
+  .pc-grid{grid-template-columns:repeat(2,1fr);margin-top:3rem;}
+  .sv-top{margin-bottom:3rem;}
+  .wk-hd{margin-bottom:2.5rem;}
+  .st-item{padding:2.5rem 1rem;}
+}
+
+/* ≤900 — small tablet: mobile nav, single-column layouts */
+@media (max-width:900px){
+  nav{padding:1rem 1.25rem;}
+  nav.open{background:rgba(239,239,242,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);}
+  .nav-toggle{display:flex;}
+  .nav-links{position:absolute;top:calc(100% + 8px);left:1rem;right:1rem;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-radius:20px;padding:.5rem;border:1px solid rgba(0,0,0,.06);box-shadow:0 20px 60px rgba(0,0,0,.15);opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .25s,transform .25s,visibility .25s;}
+  nav.open .nav-links{opacity:1;visibility:visible;transform:none;}
+  .nav-links li a{display:block;padding:.95rem 1rem;font-size:1rem;color:var(--text);border-radius:12px;}
+  .nav-links li a:hover{background:#f7f7fa;}
+  .nav-links li:last-child{padding:.35rem .25rem .25rem;}
+  .nav-links li:last-child a.nav-cta-btn{text-align:center;border-radius:50px;padding:1rem;background:var(--text);color:#fff!important;}
+
+  .wk-grid{grid-template-columns:1fr;}
+  .wk-side{grid-template-rows:none;grid-template-columns:1fr 1fr;}
+  .big .wk-inner{min-height:380px;}
+
+  .ts-grid{grid-template-columns:1fr;max-width:620px;margin-left:auto;margin-right:auto;}
+  .pr-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto;}
+  .pr-card.feat{transform:none;margin-top:.75rem;}
+  .pr-card.feat:hover{transform:translateY(-4px);}
+
+  .ct-wrap{grid-template-columns:1fr;gap:3rem;}
+  .fg input,.fg select,.fg textarea{font-size:1rem;}
+
+  .ft-top{grid-template-columns:repeat(3,1fr);gap:2.5rem 2rem;}
+  .ft-brand{grid-column:1/-1;}
+  .ft-brand p{max-width:420px;}
+}
+
+/* ≤700 — large phones */
+@media (max-width:700px){
+  section{padding:4.5rem 1.25rem;}
+  #hero{padding:7rem 1.25rem 3.5rem;min-height:100svh;}
+  .blob-1{width:420px;height:420px;top:-150px;left:-150px;}
+  .blob-2{width:280px;height:280px;}
+  .blob-3{width:240px;height:240px;}
+  .blob-4{width:200px;height:200px;}
+  .booking-badge{font-size:.78rem;padding:.45rem 1rem;margin-bottom:1.75rem;}
+  .hero-headline{font-size:clamp(2rem,10.5vw,4.5rem);margin-bottom:1.5rem;}
+  .hl-row{flex-wrap:wrap;row-gap:.05em;}
+  .pill-inner{width:58px;height:42px;}
+  .hl-pill{border-radius:14px;padding:4px 6px;}
+  .hero-sub{margin-bottom:2rem;}
+  .hero-cards{grid-template-columns:1fr 1fr;max-width:440px;margin-top:2.5rem;gap:.85rem;}
+
+  .sv-top,.wk-hd{flex-direction:column;align-items:flex-start;gap:1.5rem;}
+  .sv-top{margin-bottom:2.25rem;}
+  .wk-hd{margin-bottom:2rem;}
+
+  .wk-side{grid-template-columns:1fr;}
+  .wk-inner{min-height:260px;padding:1.5rem;}
+  .big .wk-inner{min-height:340px;}
+  .wk-tag{top:1.1rem;left:1.1rem;}
+  .wk-arrow{top:1.1rem;right:1.1rem;}
+
+  #stats{padding:3.5rem 1.25rem;}
+  .st-row{grid-template-columns:repeat(2,1fr);border-radius:20px;}
+  .st-item{padding:2rem 1rem;}
+  .st-item:nth-child(2){border-right:none;}
+  .st-item:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.07);}
+
+  .pr-hd{margin-bottom:3rem;}
+  footer{padding:3.5rem 1.25rem 1.75rem;}
+}
+
+/* ≤560 — phones */
+@media (max-width:560px){
+  .stitle{font-size:2rem;}
+  .ssub{font-size:.98rem;}
+  .hero-cta-row{flex-direction:column;gap:1.25rem;}
+  .btn-mag{width:100%;max-width:340px;justify-content:center;}
+  .hcard{padding:.95rem 1rem;}
+  .hcard h4{font-size:.85rem;}
+  .hcard p{font-size:.72rem;}
+  .hcard-num{font-size:1.4rem;}
+
+  .sv-grid,.pc-grid{grid-template-columns:1fr;gap:1.1rem;}
+  .sv-card{padding:1.75rem;border-radius:20px;}
+  .pc-step{padding:1.75rem 1.5rem;border-radius:20px;}
+  .wk-card{border-radius:20px;}
+  .ts-card{padding:1.6rem;border-radius:20px;}
+  .pr-card{padding:1.85rem 1.5rem;border-radius:20px;}
+
+  .frow{grid-template-columns:1fr;}
+  .ct-wrap{gap:2.5rem;}
+
+  .ft-top{grid-template-columns:1fr 1fr;}
+  .ft-col:last-child{grid-column:1/-1;}
+  .ft-bot{flex-direction:column;gap:1.25rem;text-align:center;}
+
+  .btop{right:1rem;bottom:1rem;width:42px;height:42px;}
+  .btn-outline{padding:.8rem 1.5rem;}
+}
+
+/* ≤360 — very small phones */
+@media (max-width:360px){
+  .nav-logo{font-size:1.05rem;}
+  .hero-cards{grid-template-columns:1fr;}
+  .st-num{font-size:2rem;}
+}
 </style>
 </head>
 <body>
@@ -312,13 +458,14 @@ footer{background:white;padding:4rem 5vw 2rem;border-top:1px solid rgba(0,0,0,.0
     </div>
     PixelPop
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#services">Services</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#contact" class="nav-cta-btn">Let's talk ↗</a></li>
   </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- HERO -->
@@ -437,7 +584,7 @@ footer{background:white;padding:4rem 5vw 2rem;border-top:1px solid rgba(0,0,0,.0
     <div class="wk-card big c1">
       <div class="wk-bg"></div>
       <div class="wk-inner">
-        <img src="/Users/aryankant/Desktop/PixelPop/Sample img 1.png" alt="PortfolioOS UI Design" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:24px;"/>
+        <img src="/Users/aryankant/Desktop/PixelPop/Sample img 1.png" alt="PortfolioOS UI Design" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:24px;" onerror="this.style.display='none'"/>
         <div class="wk-tag">UI/UX Design</div>
         <div class="wk-arrow">↗</div>
         <div class="wk-info"><h3>PortfolioOS — Portfolio Platform</h3><p>Product Design · Interface · User Experience</p></div>
@@ -614,6 +761,9 @@ footer{background:white;padding:4rem 5vw 2rem;border-top:1px solid rgba(0,0,0,.0
 <button class="btop" id="bt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
+// ── DEVICE ──
+const fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
 // ── CURSOR ──
 const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0,raf;
@@ -621,7 +771,7 @@ document.addEventListener('mousemove',e=>{
   mx=e.clientX;my=e.clientY;
   dot.style.left=mx+'px';dot.style.top=my+'px';
 });
-(function animR(){
+if(fine)(function animR(){
   rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
   ring.style.left=rx+'px';ring.style.top=ry+'px';
   requestAnimationFrame(animR);
@@ -651,8 +801,9 @@ window.addEventListener('scroll',()=>{
 const hcanvas=document.getElementById('hero-canvas');
 const hctx=hcanvas.getContext('2d');
 let particles=[];
-function resizeHC(){hcanvas.width=window.innerWidth;hcanvas.height=window.innerHeight;}
+function resizeHC(){const p=hcanvas.parentElement;hcanvas.width=p.offsetWidth;hcanvas.height=p.offsetHeight;}
 resizeHC();window.addEventListener('resize',resizeHC);
+if(window.ResizeObserver)new ResizeObserver(resizeHC).observe(hcanvas.parentElement);
 const colors=['rgba(74,142,245,','rgba(123,94,240,','rgba(232,95,163,','rgba(245,166,35,'];
 for(let i=0;i<55;i++){
   particles.push({
@@ -681,7 +832,9 @@ drawParticles();
 // ── STATS PARTICLES ──
 const sc=document.getElementById('stats-canvas');
 const sctx=sc.getContext('2d');
-sc.width=sc.offsetWidth||1200;sc.height=sc.offsetHeight||220;
+function resizeSC(){const p=sc.parentElement;sc.width=p.offsetWidth||1200;sc.height=p.offsetHeight||220;}
+resizeSC();window.addEventListener('resize',resizeSC);
+if(window.ResizeObserver)new ResizeObserver(resizeSC).observe(sc.parentElement);
 let sp=[];
 for(let i=0;i<40;i++){
   sp.push({x:Math.random()*sc.width,y:Math.random()*sc.height,r:Math.random()*1.5+.3,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,c:colors[Math.floor(Math.random()*colors.length)]});
@@ -700,7 +853,7 @@ function drawSP(){
 drawSP();
 
 // ── PARALLAX BLOBS on mouse ──
-document.addEventListener('mousemove',e=>{
+if(fine)document.addEventListener('mousemove',e=>{
   const cx=e.clientX/window.innerWidth-.5;
   const cy=e.clientY/window.innerHeight-.5;
   document.querySelectorAll('.blob').forEach(b=>{
@@ -715,7 +868,7 @@ document.addEventListener('mousemove',e=>{
 });
 
 // ── 3D TILT on cards ──
-document.querySelectorAll('[data-tilt]').forEach(card=>{
+if(fine)document.querySelectorAll('[data-tilt]').forEach(card=>{
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect();
     const x=e.clientX-r.left,y=e.clientY-r.top;
@@ -734,7 +887,7 @@ document.querySelectorAll('[data-tilt]').forEach(card=>{
 });
 
 // ── MAGNETIC BUTTON ──
-document.querySelectorAll('.btn-mag,.btn-submit,.pr-cta,.btn-outline,.sb,.nav-cta-btn').forEach(btn=>{
+if(fine)document.querySelectorAll('.btn-mag,.btn-submit,.pr-cta,.btn-outline,.sb,.nav-cta-btn').forEach(btn=>{
   btn.addEventListener('mousemove',e=>{
     const r=btn.getBoundingClientRect();
     const x=e.clientX-r.left-r.width/2;
@@ -752,7 +905,7 @@ document.querySelectorAll('.btn-mag,.btn-submit,.pr-cta,.btn-outline,.sb,.nav-ct
 // ── SCROLL REVEAL ──
 const obs=new IntersectionObserver(en=>{
   en.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});
-},{threshold:.08});
+},{threshold:.05,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
 
 // ── COUNT UP ANIMATION ──
@@ -781,6 +934,14 @@ const mq=document.getElementById('mq');
 let h='';
 for(let i=0;i<3;i++)items.forEach((t,idx)=>{h+=`<span class="mq-item${idx%4===2?' mq-g':''}">${t}<span style="font-size:.45rem;margin-left:1.5rem">✦</span></span>`;});
 mq.innerHTML=h+h;
+
+// ── MOBILE NAV ──
+const navEl=document.getElementById('nav'),navTg=document.getElementById('navToggle');
+function closeNav(){navEl.classList.remove('open');navTg.setAttribute('aria-expanded','false');}
+navTg.addEventListener('click',()=>{const o=navEl.classList.toggle('open');navTg.setAttribute('aria-expanded',o);});
+navEl.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',closeNav));
+document.addEventListener('click',e=>{if(!navEl.contains(e.target))closeNav();});
+window.addEventListener('resize',()=>{if(window.innerWidth>900)closeNav();});
 
 // ── FORM ──
 function hf(e){
